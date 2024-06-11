@@ -25,11 +25,13 @@ public class Chatbot {
         //Pick up age and store it.
         int age = scanner.nextInt();
 
+
         //add new a line before asking next question.
         System.out.printf("So you're %d, cool! I'm 400 years old.%n", age);
         System.out.println("This means I'm " + (400 / age) + " times older than you.");
         System.out.println("Enough about me. What's your favourite language? (just don't say Python)");
         //Pick up language and store it.
+        scanner.nextLine(); // fix bug
         String language = scanner.nextLine();
 
         //add new a line here.
