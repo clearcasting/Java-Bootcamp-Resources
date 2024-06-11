@@ -26,7 +26,7 @@ public class Quiz {
         //store answer 4
         String answer4 = scan.nextLine();
 
-        
+
         int score = 0;
 
         //Task 2: Check each answer - For each correct answer, add 5 points to the score. 
