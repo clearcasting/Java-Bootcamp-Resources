@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Blackjack {
@@ -10,8 +11,9 @@ public class Blackjack {
         System.out.println("We shall see..");
         System.out.println("..Ready? Press anything to begin!");
         //Task 3 – Wait for the user to press enter.
+        scan.nextLine();
         //Task 4 – Get two random cards.
-        //       – Print them: \n You get a \n" + <randomCard> + "\n and a \n" + <randomCard>
+        //       – Print them: \n You get a \n" + <randomCard> + "\n and a \n" + <randomCard>'
 
         //Task 5 – Print the sum of your hand value.
         //       – print: your total is: <hand value>
@@ -45,6 +47,11 @@ public class Blackjack {
      *   1. Gets a random number between 1 and 13.
      *   2. Returns a card.
      */
+
+    public int drawRandomCard() {
+        Random random = new Random();
+        return random.nextInt(1, 14);
+    }
 
     /** Task 2 – make a function that returns a String drawing of the card.
      * Function name – cardString
