@@ -19,7 +19,23 @@ public class Pokerito {
         >> • Ready? Type anything if you are.
         |
         */
-        
+        System.out.println("Let's play Pokerito. Type anything when you're ready.");
+        scan.nextLine();
+
+        System.out.println("""
+                It's like Poker, but a lot simpler.
+                
+                • There are two players, you and the computer.
+                • The dealer will give each player one card.
+                • Then, the dealer will draw five cards (the river)
+                • The player with the most river matches wins!
+                • If the matches are equal, everyone's a winner!
+                
+                • Ready? Type anything if you are.
+                """);
+        scan.nextLine();
+
+
 
         /*Task 3: Present the user with a card
          println 'Here's your card:'
@@ -28,6 +44,15 @@ public class Pokerito {
          println 'Here's the computer's card:'
          <show computer's card>
         */
+
+        System.out.println("Here's your card:");
+        String playerCard = randomCard();
+        System.out.println(playerCard);
+
+        System.out.println();
+        String computerCard = randomCard();
+        System.out.println("Here's the computer's card:");
+        System.out.println(computerCard);
 
         int yourMatches = 0;
         int computerMatches =0;
@@ -46,6 +71,26 @@ public class Pokerito {
          *      ...
          */
 
+        System.out.println("""
+                • Now, the dealer will draw five cards. Press enter to continue. 
+                """);
+        for (int i = 0; i < 5; i++) {
+            String randomCard = randomCard();
+            scan.nextLine();
+
+            if (playerCard.equals(randomCard)) {
+                yourMatches++;
+            }
+            if (computerCard.equals(randomCard)) {
+                computerMatches++;
+            }
+
+            System.out.println("Card " + (i + 1));
+            System.out.println();
+            System.out.println();
+            System.out.println(randomCard);
+        }
+
         /** Task 5 - Get the winner
          * 
          * • Count your number of matches.
@@ -57,8 +102,21 @@ public class Pokerito {
          * • If the computer has more matches, print: The computer wins! 
          * • If the matches are equal, print: everyone wins!.
          */
+        System.out.printf("""
+                Your number of matches: %d
+                Computer number of matches: %d
+                """, yourMatches, computerMatches);
+
+        if (yourMatches > computerMatches) {
+            System.out.println("You win!");
+        } else if (yourMatches == computerMatches) {
+            System.out.println("Everyone wins!");
+        } else {
+            System.out.println("The computer wins!");
+        }
 
          scan.close();
+
     }
 
     /** Task 1
@@ -70,5 +128,91 @@ public class Pokerito {
      *   1. Gets a random number between 1 and 13.
      *   2. Returns a card that matches the random number (get the String values from cards.text).   
      */
+
+    public static String randomCard() {
+        int random = (int) (Math.random() * 13) + 1;
+
+        return switch(random) {
+            case 1 -> "   _____\n"+
+                    "  |A _  |\n"+
+                    "  | ( ) |\n"+
+                    "  |(_'_)|\n"+
+                    "  |  |  |\n"+
+                    "  |____V|\n";
+            case 2 -> "   _____\n"+
+                    "  |2    |\n"+
+                    "  |  o  |\n"+
+                    "  |     |\n"+
+                    "  |  o  |\n"+
+                    "  |____Z|\n";
+            case 3 -> "   _____\n" +
+                    "  |3    |\n"+
+                    "  | o o |\n"+
+                    "  |     |\n"+
+                    "  |  o  |\n"+
+                    "  |____E|\n";
+            case 4 -> "   _____\n" +
+                    "  |4    |\n"+
+                    "  | o o |\n"+
+                    "  |     |\n"+
+                    "  | o o |\n"+
+                    "  |____h|\n";
+            case 5 -> "   _____ \n" +
+                    "  |5    |\n" +
+                    "  | o o |\n" +
+                    "  |  o  |\n" +
+                    "  | o o |\n" +
+                    "  |____S|\n";
+            case 6 -> "   _____ \n" +
+                    "  |6    |\n" +
+                    "  | o o |\n" +
+                    "  | o o |\n" +
+                    "  | o o |\n" +
+                    "  |____6|\n";
+            case 7 -> "   _____ \n" +
+                    "  |7    |\n" +
+                    "  | o o |\n" +
+                    "  |o o o|\n" +
+                    "  | o o |\n" +
+                    "  |____7|\n";
+            case 8 -> "   _____ \n" +
+                    "  |8    |\n" +
+                    "  |o o o|\n" +
+                    "  | o o |\n" +
+                    "  |o o o|\n" +
+                    "  |____8|\n";
+            case 9 -> "   _____ \n" +
+                    "  |9    |\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |____9|\n";
+            case 10 -> "   _____ \n" +
+                    "  |10  o|\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |___10|\n";
+            case 11 -> "   _____\n" +
+                    "  |J  ww|\n"+
+                    "  | o {)|\n"+
+                    "  |o o% |\n"+
+                    "  | | % |\n"+
+                    "  |__%%[|\n";
+            case 12 -> "   _____\n" +
+                    "  |Q  ww|\n"+
+                    "  | o {(|\n"+
+                    "  |o o%%|\n"+
+                    "  | |%%%|\n"+
+                    "  |_%%%O|\n";
+            case 13 -> "   _____\n" +
+                    "  |K  WW|\n"+
+                    "  | o {)|\n"+
+                    "  |o o%%|\n"+
+                    "  | |%%%|\n"+
+                    "  |_%%%>|\n";
+            default -> "";
+        };
+    }
 
 }
