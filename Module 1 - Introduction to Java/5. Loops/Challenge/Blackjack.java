@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class Blackjack {
@@ -15,14 +14,32 @@ public class Blackjack {
         //Task 4 – Get two random cards.
         //       – Print them: \n You get a \n" + <randomCard> + "\n and a \n" + <randomCard>'
 
+        int card1 = drawRandomCard();
+        String card1String = cardString(card1);
+
+        int card2 = drawRandomCard();
+        String card2String = cardString(card2);
+        int total = card1 + card2;
+
+        System.out.printf("""
+                You get a
+                %s
+                and a
+                %s
+                Your total is: %d%n
+                """, card1String, card2String, total);
         //Task 5 – Print the sum of your hand value.
         //       – print: your total is: <hand value>
-
         
         //Task 6 – Get two random cards for the dealer.
         //       – Print: The dealer shows \n" + <first card> + "\nand has a card facing down \n" + <facedown card>
         //       – Print: \nThe dealer's total is hidden
+        int dealerCard = drawRandomCard();
+        String dealerCard1 = cardString(dealerCard);
 
+        int dealerCard2 = drawRandomCard();
+        String dealerCard2String = cardString(dealerCard2);
+        System.out.println("The dealer shows \n" + dealerCard1 + "\nand has a card facing down \n" + faceDown());
        
         //Task 8 – Keep asking the player to hit or stay (while loop).
         //       1. Every time the player hits
@@ -31,7 +48,58 @@ public class Blackjack {
         //             – print: (new line) You get a (new line) <show new card>.
         //             - print: your new total is <total>
 
-        //       2. Once the player stays, break the loop. 
+        //       2. Once the player stays, break the loop.
+        boolean flag = true;
+        while (flag) {
+            if(hitOrStay().equals("stay")) {
+                flag = false;
+            } else {
+                int newCard = drawRandomCard();
+                total += newCard;
+                System.out.printf("""
+                                You get a
+                                %s
+                                your new total is %d
+                                """, cardString(newCard), total);
+            }
+
+            if (total > 21) {
+                System.out.println("Bust! Player loses");
+                System.exit(0);
+            }
+        }
+
+        System.out.println("Dealer's turn");
+        System.out.printf("""
+                    The dealer's cards are
+                    %s
+                    and a
+                    %s
+                    """, dealerCard1, dealerCard2String);
+
+        int dealerTotal = dealerCard + dealerCard2;
+        while (!flag) {
+            int newCard = drawRandomCard();
+            String newCardString = cardString(newCard);
+            dealerTotal += newCard;
+            System.out.printf("""
+                    Dealer gets a
+                    %s
+                    Dealer's total is %d
+                    """, newCardString, dealerTotal);
+            if (dealerTotal >= 17) {
+                if (dealerTotal > 21) {
+                    System.out.println("Bust! Dealer loses");
+                    System.exit(0);
+                }
+                if (total > dealerTotal) {
+                    System.out.println("Player wins!");
+                } else {
+                    System.out.println("Dealer wins!");
+                }
+                System.exit(0);
+            }
+        }
 
         
         //For tasks 9 to 13, see the article: Blackjack Part II. 
@@ -48,9 +116,8 @@ public class Blackjack {
      *   2. Returns a card.
      */
 
-    public int drawRandomCard() {
-        Random random = new Random();
-        return random.nextInt(1, 14);
+    public static int drawRandomCard() {
+        return (int) (Math.random() * 13) + 1;
     }
 
     /** Task 2 – make a function that returns a String drawing of the card.
@@ -61,6 +128,89 @@ public class Blackjack {
      * Inside the function:
      *   1. Returns a String drawing of the card.
      */
+    public static String cardString(int cardNumber) {
+        return switch(cardNumber) {
+            default -> "";
+            case 1 -> "   _____\n"+
+                    "  |A _  |\n"+
+                    "  | ( ) |\n"+
+                    "  |(_'_)|\n"+
+                    "  |  |  |\n"+
+                    "  |____V|\n";
+            case 2 -> "   _____\n"+
+                    "  |2    |\n"+
+                    "  |  o  |\n"+
+                    "  |     |\n"+
+                    "  |  o  |\n"+
+                    "  |____Z|\n";
+            case 3 -> "   _____\n" +
+                    "  |3    |\n"+
+                    "  | o o |\n"+
+                    "  |     |\n"+
+                    "  |  o  |\n"+
+                    "  |____E|\n";
+            case 4 -> "   _____\n" +
+                    "  |4    |\n"+
+                    "  | o o |\n"+
+                    "  |     |\n"+
+                    "  | o o |\n"+
+                    "  |____h|\n";
+            case 5 -> "   _____ \n" +
+                    "  |5    |\n" +
+                    "  | o o |\n" +
+                    "  |  o  |\n" +
+                    "  | o o |\n" +
+                    "  |____S|\n";
+            case 6 -> "   _____ \n" +
+                    "  |6    |\n" +
+                    "  | o o |\n" +
+                    "  | o o |\n" +
+                    "  | o o |\n" +
+                    "  |____6|\n";
+            case 7 -> "   _____ \n" +
+                    "  |7    |\n" +
+                    "  | o o |\n" +
+                    "  |o o o|\n" +
+                    "  | o o |\n" +
+                    "  |____7|\n";
+            case 8 -> "   _____ \n" +
+                    "  |8    |\n" +
+                    "  |o o o|\n" +
+                    "  | o o |\n" +
+                    "  |o o o|\n" +
+                    "  |____8|\n";
+            case 9 -> "   _____ \n" +
+                    "  |9    |\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |____9|\n";
+            case 10 -> "   _____ \n" +
+                    "  |10  o|\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |o o o|\n" +
+                    "  |___10|\n";
+            case 11 -> "   _____\n" +
+                    "  |J  ww|\n"+
+                    "  | o {)|\n"+
+                    "  |o o% |\n"+
+                    "  | | % |\n"+
+                    "  |__%%[|\n";
+            case 12 -> "   _____\n" +
+                    "  |Q  ww|\n"+
+                    "  | o {(|\n"+
+                    "  |o o%%|\n"+
+                    "  | |%%%|\n"+
+                    "  |_%%%O|\n";
+            case 13 -> "   _____\n" +
+                    "  |K  WW|\n"+
+                    "  | o {)|\n"+
+                    "  |o o%%|\n"+
+                    "  | |%%%|\n"+
+                    "  |_%%%>|\n";
+        };
+    }
 
     public static String faceDown() {
         return
@@ -82,5 +232,18 @@ public class Blackjack {
      *      Please write 'hit' or 'stay'
      *   3. Returns the user's option 
      */
+
+    public static String hitOrStay() {
+        boolean flag = true;
+        String answer = "";
+        while (flag) {
+            System.out.println("Please write 'hit' or 'stay'");
+            answer = scan.nextLine();
+            if(answer.equals("hit") || answer.equals("stay")) {
+                flag = false;
+            }
+        }
+        return answer;
     }
+}
 
