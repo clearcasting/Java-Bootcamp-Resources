@@ -19,6 +19,15 @@ public class Person {
         this.dateOfBirth = source.dateOfBirth;
         this.seatNumber = source.seatNumber;
     }
+
+    public boolean applyPassport() {
+        return (int) (Math.random() * 2) == 1;
+    }
+
+    public int chooseSeat() {
+        seatNumber = (int) (Math.random() * 11 + 1);
+        return seatNumber;
+    }
     
 
     public String getName() {
