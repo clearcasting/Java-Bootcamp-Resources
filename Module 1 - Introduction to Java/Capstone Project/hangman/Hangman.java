@@ -80,47 +80,55 @@ public class Hangman {
         Arrays.fill(hit, "_");
 
         while (true) {
-            int hitCounter = 0;
             printGallows(missedCounter);
             printStatus(hit);
             printMissed(missed);
+
             String guess = askUser().substring(0,1);
 
-            for (int i = 0; i < randomWord.length(); i++) {
-                if (guess.charAt(0) == randomWord.charAt(i)) {
-                    hit[i] = guess;
-                    hitCounter++;
-                }
-            }
-
-            if (hitCounter == 0) {
+            int hitCounter = checkHit(randomWord, guess, hit);
+            if (hitCounter == -1) {
                 missed[missedCounter] = guess;
                 missedCounter++;
             }
+            checkWin(randomWord, hit, missedCounter);
+        }
+    }
 
-            if (missedCounter == 6) {
-                printGallows(6);
-                System.out.println("RIP!");
-                System.out.println("Word was " + randomWord);
-                System.exit(0);
+    public static int checkHit(String randomWord, String guess, String[] hit) {
+        int hitCounter = -1;
+        for (int i = 0; i < randomWord.length(); i++) {
+            if (guess.charAt(0) == randomWord.charAt(i)) {
+                hit[i] = guess;
+                hitCounter++;
             }
+        }
+        return hitCounter;
+    }
 
-            hitCounter = 0;
-            for (String i : hit) {;
-                if (i.equals("_")) {
-                    break;
-                } else {
-                    hitCounter++;
-                    if (hitCounter == randomWord.length()) {
-                        System.out.println();
-                        printStatus(hit);
-                        System.out.println("GOOD WORK!");
-                        System.exit(0);
-                    }
+    public static void checkWin(String randomWord, String[] hit, int missedCounter) {
+        int hitCounter = 0;
+
+        if (missedCounter == 6) {
+            printGallows(6);
+            System.out.println("RIP!");
+            System.out.println("Word was " + randomWord);
+            System.exit(0);
+        }
+
+        for (String i : hit) {;
+            if (i.equals("_")) {
+                break;
+            } else {
+                hitCounter++;
+                if (hitCounter == randomWord.length()) {
+                    System.out.println();
+                    printStatus(hit);
+                    System.out.println("GOOD WORK!");
+                    System.exit(0);
                 }
             }
         }
-
     }
 
     public static String askUser() {
