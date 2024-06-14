@@ -17,7 +17,7 @@ public class TicTacToe {
             //Task 2: Call the function printBoard();
             printBoard(board);
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 9; i++) {
                 if (i % 2 == 0) {
                     System.out.println("Turn: X");
                     int[] a = askUser(board);
@@ -26,10 +26,20 @@ public class TicTacToe {
                 } else {
                     System.out.println("Turn: O");
                     int[] a = askUser(board);
-                    board[a[0]][a[1]] = 'Y';
+                    board[a[0]][a[1]] = 'O';
                     printBoard(board);
                 }
+
+                int count = checkWin(board);
+                if (count == 3) {
+                    System.out.println("X wins!");
+                    System.exit(0);
+                } else if (count == -3){
+                    System.out.println("O wins!");
+                    System.exit(0);
+                }
             }
+        System.out.println("It's a tie!");
               /*
               {  Task 3: Loop through turns.
 
@@ -122,6 +132,98 @@ public class TicTacToe {
      *   4. Check the left diagonal for a straight X or straight O (Task 9).
      *   5. Check the right diagonal for a straight X or straight O (Task 10).
      */
+    public static int checkWin(char[][] board) {
+        int count = 0;
+        int rows = checkRows(board);
+
+        // Math.abs returns the absolute value of a given number, removing any negative sign.
+        if (Math.abs(rows) == 3) return rows; // If the block of code consists of only one line, you can omit the curly braces.
+
+        int columns = checkColumns(board);
+        if (Math.abs(columns) == 3) return columns;
+
+        int leftDiagonal = checkLeft(board);
+        if (Math.abs(leftDiagonal) == 3) return leftDiagonal;
+
+        int rightDiagonal = checkRight(board);
+        if (Math.abs(rightDiagonal) == 3) return rightDiagonal;
+
+        return count;
+    }
+
+    public static int checkRows(char[][] board) {
+        int count = 0;
+
+        for (char[] chars : board) {
+            if (count == 3 || count == -3) {
+                break;
+            } else {
+                count = 0;
+            }
+            for (char aChar : chars) {
+                if (aChar == 'X') {
+                    count++;
+                } else if (aChar == 'O'){
+                    count--;
+                }
+                if (count == 3 || count == -3) break;
+            }
+        }
+
+        return count;
+    }
+
+
+    public static int checkColumns(char[][] board) {
+        int count = 0;
+
+        for (int i = 0; i < board.length; i++) {
+            if (count == 3 || count == -3) {
+                break;
+            } else {
+                count = 0;
+            }
+            for (char[] chars : board) {
+                if (chars[i] == 'X') {
+                    count++;
+                } else if (chars[i] == 'O') {
+                    count--;
+                }
+                if (count == 3 || count == -3) break;
+            }
+        }
+
+        return count;
+    }
+
+
+    public static int checkLeft(char[][] board) {
+        int count = 0;
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][i] == 'X') {
+                count++;
+            } else if (board[i][i] == 'O') {
+                count--;
+            }
+            if (count == 3 || count == -3) break;
+        }
+        return count;
+    }
+
+
+    public static int checkRight(char[][] board) {
+        int count = 0;
+        for (int i = 0; i < board.length; i++) {
+            if (board[2 - i][i] == 'X') {
+                count++;
+            } else if (board[2 - i][i] == 'O') {
+                count--;
+            }
+            if (count == 3 || count == -3) break;
+        }
+        return count;
+    }
+
 
 
 }
