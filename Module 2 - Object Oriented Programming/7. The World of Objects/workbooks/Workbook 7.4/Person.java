@@ -13,6 +13,14 @@ public class Person {
         this.seatNumber = seatNumber;
     }
 
+    public Person(Person person) {
+        this.name = person.name;
+        this.nationality = person.nationality;
+        this.dateOfBirth = person.dateOfBirth;
+        this.passport = person.passport;
+        this.seatNumber = person.seatNumber;
+    }
+
     public String getName() {
         return name;
     }
