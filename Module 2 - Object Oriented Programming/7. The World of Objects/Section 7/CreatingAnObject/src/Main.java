@@ -1,9 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        Car lambo = new Car("Lambo", 700000, 2008, "Black");
-        lambo.drive();
+        Car nissan = new Car("Nissan", 10000, 2020, "Green");
 
-        Car honda = new Car("Honda", 15000, 2006, "Blue");
-        honda.drive();
+        Car dodge = new Car("Dodge", 11000, 2019, "Blue");
+
     }
 }
