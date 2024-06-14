@@ -51,4 +51,12 @@ public class Contact {
     public int getAge() {
         return age;
     }
+
+    public String toString() {
+        return "Name: " + this.name + "\n" +
+                "Phone number: " + this.phoneNumber + "\n" +
+                "Birth Date: " + this.birthDate + "\n" +
+                "Age: " + this.age + " year old\n";
+    }
+
 }
