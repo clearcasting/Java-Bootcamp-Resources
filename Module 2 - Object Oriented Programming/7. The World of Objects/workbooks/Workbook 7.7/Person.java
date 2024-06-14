@@ -23,6 +23,16 @@ public class Person {
         this.seatNumber = source.seatNumber;
         this.passport = Arrays.copyOf(source.passport, source.passport.length);
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n" + "Nationality: " +
+                nationality + "\n" + "Date of Birth: " +
+                dateOfBirth + "\n" + "Seat Number: " +
+                seatNumber + "\n" + "Passport: " +
+                Arrays.toString(passport) + "\n";
+
+    }
     
     public String getName() {
         return name;

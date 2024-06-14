@@ -8,7 +8,7 @@
         if (person.applyPassport() == true) {
             person.setPassport();
         }
-
+        System.out.println(person);
         
     }
   
