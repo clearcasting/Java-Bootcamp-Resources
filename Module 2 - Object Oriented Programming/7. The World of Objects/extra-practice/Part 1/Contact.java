@@ -35,4 +35,20 @@ public class Contact {
         this.birthDate = birthDate;
         setAge();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public int getAge() {
+        return age;
+    }
 }
