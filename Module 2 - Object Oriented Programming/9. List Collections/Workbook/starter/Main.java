@@ -18,8 +18,10 @@ public class Main {
             new Movie("The Lord of the Rings: The Fellowship of the Ring", "DVD", 8.8)
         };
 
-        // TODO: Populate Store using a foreach loop. 
-
+        // TODO: Populate Store using a foreach loop.
+        for (Movie movie : movies) {
+            store.addMovie(movie);
+        }
         printStore();
         userInput();
 
