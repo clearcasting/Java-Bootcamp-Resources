@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -40,17 +41,24 @@ public class Main {
             System.out.print("\nPlease choose an integer between 0 - 9: ");
 
             // 1. Anticipate the user not entering an integer.
+            int choice;
+            try {
+                choice = scanner.nextInt();
 
-            int choice = scanner.nextInt();
-
-            // 2. Anticipate the choice being incorrect.
-            return choice;
+                if (!incorrectChoice(choice)) {
+                    return choice;
+                } else {
+                    System.out.println("Invalid choice - You must enter an integer between 0 - 9");
+                }
+            } catch (InputMismatchException exception) {
+                System.out.println("Please enter an integer value.");
+                scanner.nextLine();
+            }
         }
     }
 
     public static boolean incorrectChoice(int choice) {
-        // TODO
-        return false;
+        return choice < 0 || choice > 9;
     }
 
     public static double promptForRating(Scanner scanner, String name) {
@@ -58,18 +66,21 @@ public class Main {
             System.out.print("\nSet a new rating for " + name + ": ");
             
             // 1. Anticipate the user not entering a double.
-
-            double rating = scanner.nextDouble();
-            
-            // 2. Anticipate the rating being incorrect.
-
-            return rating;
+            try {
+                double rating = scanner.nextDouble();
+                if (incorrectRating(rating)) {
+                    System.out.println("Rating must be 0 - 9");
+                } else {
+                    return rating;
+                }
+            } catch (InputMismatchException exception) {
+                System.out.println("Please enter a double.");
+            }
          }
     }
 
     public static boolean incorrectRating(double rating) {
-        // TODO
-        return false;
+        return rating < 0 || rating > 9;
     }
 
     public static void loadMovies(String fileName) throws FileNotFoundException {
