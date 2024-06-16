@@ -18,17 +18,21 @@ public class Car {
         setPrice(price);
     }
 
+    public Car(Car source) {
+        setMake(source.make);
+        setModel(source.model);
+        setBodyType(source.bodyType);
+        setProductionYear(source.productionYear);
+        setPrice(source.price);
+    }
+
     public String getMake() {
         return make;
     }
 
-    public boolean isNullBlank(String source) {
-        if (source == null || source.isBlank()) throw new IllegalArgumentException(source + " cannot be null or blank.");
-        return false;
-    }
-
     public void setMake(String make) {
-        if (isNullBlank(make)) this.make = make;
+        if (make == null || make.isBlank()) throw new IllegalArgumentException("Make cannot be null or blank.");
+        this.make = make;
     }
 
     public String getModel() {
@@ -36,7 +40,8 @@ public class Car {
     }
 
     public void setModel(String model) {
-        if (isNullBlank(model)) this.model = model;
+        if (model == null || model.isBlank()) throw new IllegalArgumentException("Model cannot be null or blank.");
+        this.model = model;
     }
 
     public BodyType getBodyType() {
