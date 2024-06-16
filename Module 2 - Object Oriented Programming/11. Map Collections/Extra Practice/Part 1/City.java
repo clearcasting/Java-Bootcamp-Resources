@@ -9,14 +9,9 @@ public class City {
         setPopulation(population);
     }
 
-    public City(City source) {
-        setName(source.name);
-        setCountry(source.country);
-        setPopulation(source.population);
-    }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -27,7 +22,7 @@ public class City {
     }
 
     public String getCountry() {
-        return this.country;
+        return country;
     }
 
     public void setCountry(String country) {
@@ -38,13 +33,11 @@ public class City {
     }
 
     public long getPopulation() {
-        return this.population;
+        return population;
     }
 
     public void setPopulation(long population) {
-        if (population < 0) {
-            throw new IllegalArgumentException("Population must be greater than or equal to 0.");
-        }
+        if (population <= 0) throw new IllegalArgumentException("Population must be greater than 0.");
         this.population = population;
     }
 }
