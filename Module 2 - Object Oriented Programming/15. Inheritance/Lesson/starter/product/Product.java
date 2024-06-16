@@ -5,6 +5,12 @@ public class Product {
     private String color;
     private String brand;
 
+    public Product(double price, String color, String brand) {
+        setPrice(price);
+        setColor(color);
+        setBrand(brand);
+    }
+
     public double getPrice() {
         return this.price;
     }

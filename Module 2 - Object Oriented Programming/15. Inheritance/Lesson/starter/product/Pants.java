@@ -4,11 +4,11 @@ public class Pants extends Product {
     private int waist;
     private int length;
 
-    public Pants() {
-
+    public Pants(int waist, int length, double price, String color, String brand) {
+        super(price, color, brand);
+        setWaist(waist);
+        setLength(length);
     }
-
-
 
 
     public int getWaist() {

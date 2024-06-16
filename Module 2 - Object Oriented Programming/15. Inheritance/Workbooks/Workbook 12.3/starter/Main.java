@@ -17,7 +17,7 @@ public class Main {
 
         double area = shape.getArea();
         double volume = shape.getVolume();
-        
+
         System.out.println("Area: " + area);
         System.out.println("Volume: " + volume);
     }
