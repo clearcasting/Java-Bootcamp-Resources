@@ -5,9 +5,9 @@ public class Car {
     private String model;
     private BodyType bodyType;
     private int productionYear;
-    private static final int MIN_YEAR = 1900;
-    private static final double MIN_PRICE = 0;
-    private static final double MAX_PRICE = 200000;
+    public static final int MIN_YEAR = 1900;
+    public static final double MIN_PRICE = 0;
+    public static final double MAX_PRICE = 200000;
     private double price;
 
     public Car(String make, String model, BodyType bodyType, int productionYear, double price) {
@@ -58,7 +58,7 @@ public class Car {
     }
 
     public void setProductionYear(int productionYear) {
-        if (productionYear <= MIN_YEAR) throw new IllegalArgumentException("Year must be greater than " + MIN_YEAR);
+        if (productionYear < MIN_YEAR) throw new IllegalArgumentException("Year must be greater than " + MIN_YEAR);
         this.productionYear = productionYear;
     }
 
