@@ -14,6 +14,6 @@ public class Main {
         map.put("DOFO-008", new Item("Super Doo-dad", 10));
 
         System.out.println("\nSKU \t\tPrice\tItem");
-
+        map.forEach((key, value) -> System.out.println(key + "    " + value.getPrice() + "    " + value.getName()));
     }
 }
