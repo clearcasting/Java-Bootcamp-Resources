@@ -47,4 +47,5 @@ public abstract class LabEquipment {
     }
 
     public abstract String performMaintenance();
+    public abstract LabEquipment clone();
 }
