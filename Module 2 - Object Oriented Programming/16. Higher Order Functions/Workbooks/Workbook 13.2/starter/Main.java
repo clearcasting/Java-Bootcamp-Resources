@@ -6,11 +6,9 @@ public class Main {
 
         List<Double> prices = Arrays.asList(55.99, 33.99, 88.99, 11.49, 55.99, 111.99, 77.99);
 
-        // TODO
-
+        prices.sort((a, b) -> b.compareTo(a));
         System.out.println("\nPrices\n------");
-
-        // TODO
+        prices.forEach(System.out::println);
 
         List<String> books = Arrays.asList(
             "To Kill a Mockingbird",
@@ -24,12 +22,9 @@ public class Main {
             "The Lord of the Rings",
             "The Picture of Dorian Gray"
         );
-
-        // TODO
-
+        books.sort((a, b) -> a.compareTo(b));
         System.out.println("\nLibrary\n--------");
-
-        // TODO
+        books.forEach(System.out::println);
 
     }
 }
