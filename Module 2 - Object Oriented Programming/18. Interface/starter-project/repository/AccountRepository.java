@@ -1,9 +1,9 @@
 package repository;
 
+import pojo.Account;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import pojo.Account;
 
 public class AccountRepository {
 
@@ -11,18 +11,19 @@ public class AccountRepository {
 
     public void createAccount(Account account) {
 
+        this.datastore.put(account.getId(), account.clone());
     }
 
     public Account retrieveAccount(String id) {
-        return null;
+        return this.datastore.get(id).clone();
     }
 
     public void updateAccount(Account account) {
-
+        this.datastore.put(account.getId(), account.clone());
     }
 
     public void deleteAccount(String id) {
-
+        this.datastore.remove(id);
     }
 
 }
