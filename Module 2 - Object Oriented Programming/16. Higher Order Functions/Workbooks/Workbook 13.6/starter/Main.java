@@ -7,6 +7,9 @@ public class Main {
 
         System.out.println("\n**************************************");
         // names.stream()
+        names.stream()
+                .map(name -> "Hello, " + name + "!")
+                .forEach(System.out::println);
             
    
         System.out.println("\n**************************************");
@@ -14,16 +17,21 @@ public class Main {
         List<String> usernames = Arrays.asList("sparklingunicorn", "galactic_goddess", "neon_ninja", "purplepixiedust");
      
         // String username =  usernames.stream();
+        String username = usernames.stream()
+                .filter(x -> x.equals("neon_ninja"))
+                .findFirst().orElse(null);
      
-        // System.out.println("Found you: " + username);
+         System.out.println("Found you: " + username);
 
         System.out.println("\n**************************************");
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         // long numEven = numbers.stream()
-        
-        // System.out.println("There are " + numEven + " even numbers in this list");
-        
+        long numEven = numbers.stream()
+                .filter(number -> number % 2 == 0)
+                .count();
+
+         System.out.println("There are " + numEven + " even numbers in this list");
     }   
     
 }
